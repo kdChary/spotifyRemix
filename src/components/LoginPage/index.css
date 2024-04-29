@@ -1,0 +1,170 @@
+/* Styling Login Form*/
+
+.login-form {
+  width: 100%;
+  height: 100vh;
+
+  background-image: url('https://res.cloudinary.com/dgga8cymk/image/upload/v1712240735/1Spotify/Login/login_bg_img.png');
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-container {
+  width: 296px;
+  height: 337px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+
+  background-color: #181818;
+  opacity: 0.895;
+
+  border: solid 2px #18181880;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px 4px #1e293b;
+}
+@media (min-width: 768px) {
+  .inner-container {
+    width: 456px;
+    height: 433px;
+    gap: 18px;
+  }
+}
+
+.form {
+  width: 90%;
+  height: 154px;
+  gap: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.input-card {
+  width: 100%;
+  height: 48px;
+
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-family: 'Inter';
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 500;
+
+  margin: 3px;
+  line-height: 1.5;
+  letter-spacing: 0.09rem;
+}
+.input {
+  height: 28px;
+  border: solid 1px #d9d9d9;
+  border-radius: 4px;
+  background-color: #d9d9d9;
+
+  font-family: 'Assistant';
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+
+  padding-left: 9px;
+  outline: none;
+}
+@media (min-width: 768px) {
+  .form {
+    height: 246px;
+  }
+  .input-card {
+    height: 96px;
+  }
+  .label {
+    font-size: 13px;
+  }
+  .input {
+    height: 44px;
+    font-size: 15px;
+  }
+}
+
+.login-btn {
+  width: 93px;
+  height: 40px;
+
+  border: solid 1px #1db954;
+  border-radius: 8px;
+  background-color: #1db954;
+
+  font-family: 'Assistant';
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+
+  gap: 8px;
+  padding: 5px 12px;
+  align-self: center;
+  cursor: pointer;
+  transition: 1s all;
+}
+.err-msg {
+  font-family: 'Inter';
+  color: #ff0033;
+  font-size: 11px;
+  font-weight: 500;
+  font-style: oblique;
+  margin-top: 0px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .login-btn {
+    width: 100%;
+    height: 44px;
+  }
+  .err-msg {
+    font-size: 13px;
+  }
+}
+
+/* Styling App Section */
+.app-details-card {
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  gap: 10px;
+}
+
+.app-logo {
+  width: 100.8px;
+  height: 48px;
+}
+
+.app-name {
+  font-family: 'Assistant';
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .app-details-card {
+    width: 196px;
+    height: 123.14px;
+    gap: 3px;
+  }
+  .app-logo {
+    width: 148px;
+    height: 63.78px;
+  }
+  .app-name {
+    font-size: 32px;
+  }
+}
