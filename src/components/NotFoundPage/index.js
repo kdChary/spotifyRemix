@@ -1,8 +1,10 @@
 import {Link} from 'react-router-dom'
 import './index.css'
+import Header from '../Header'
 
 const NotFound = () => (
   <>
+    <Header />
     <div className="not-found" data-testid="notFound">
       <div>
         <img

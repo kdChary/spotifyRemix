@@ -1,0 +1,18 @@
+.home-page {
+  height: 90vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #181818;
+}
+@media (min-width: 768px) {
+  .home-page {
+    height: 100vh;
+    width: 90vw;
+    flex-direction: row;
+    position: absolute;
+    right: 0;
+  }
+}

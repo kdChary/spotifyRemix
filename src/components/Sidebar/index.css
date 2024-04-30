@@ -1,0 +1,67 @@
+/* Styling side bar  */
+.sidebar {
+  width: 10vw;
+  min-height: 100vh;
+
+  position: fixed;
+  left: 0;
+  right: 92.5vw;
+
+  background: #040306;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 23px 0;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Styling Image */
+.website-logo {
+  width: 53px;
+  height: 24px;
+  transition: 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.website-logo:hover {
+  width: 55px;
+  height: 26px;
+}
+
+/* Styling button */
+.side-logout-btn {
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+  outline: none;
+
+  font-family: 'Inter';
+  font-weight: 500;
+  color: #fff;
+  font-size: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+  width: 90%;
+  transition: 1s ease-in-out;
+}
+.side-logout-btn:hover {
+  font-family: 'Cartograph CF';
+  font-size: 16px;
+  color: #1db;
+}
+.side-logout-btn .icon:hover {
+  font-size: 16px;
+  color: #0cf;
+}
