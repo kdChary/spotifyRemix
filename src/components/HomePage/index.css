@@ -1,10 +1,10 @@
 .home-page {
-  height: 90vh;
+  min-height: 90vh;
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   background: #181818;
 }
 @media (min-width: 768px) {
@@ -15,4 +15,20 @@
     position: absolute;
     right: 0;
   }
+}
+
+/* Styling the container for home page components */
+.home-editors {
+  width: 100%;
+  padding: 11px;
+
+  /* background: #040306; */
+}
+.home-playlist-title {
+  font-family: 'Assistant';
+  color: #fff;
+  font-size: 21px;
+  font-style: oblique;
+  letter-spacing: 0.9px;
+  margin-top: 5px;
 }

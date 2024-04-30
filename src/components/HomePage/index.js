@@ -1,5 +1,6 @@
 import './index.css'
 import Header from '../Header'
+import HomeEditorPicks from '../HomeEditors'
 // import Sidebar from '../Sidebar'
 
 const HomePage = () => (
@@ -7,7 +8,7 @@ const HomePage = () => (
     <Header />
     <div className="home-page" data-testid="homePage">
       <div className="home-items">
-        <h3>Editor&#39;s Picks</h3>
+        <HomeEditorPicks />
         <h3>Categories</h3>
         <h3>New Releases</h3>
       </div>
