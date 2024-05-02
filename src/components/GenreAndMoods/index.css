@@ -1,0 +1,32 @@
+.genre-moods-page {
+  background: #181818;
+  height: 100vh;
+  width: 100%;
+
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+  padding: 13px 0;
+}
+
+@media (min-width: 768px) {
+  .genre-moods-page {
+    width: 90vw;
+  }
+}
+
+.categories-container {
+  width: 100%;
+  gap: 13px;
+  padding: 7px;
+}
+.category-name {
+  font-family: 'Assistant';
+  font-size: 21px;
+
+  color: #fff;
+  letter-spacing: 0.5px;
+}
