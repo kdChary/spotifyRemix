@@ -1,0 +1,20 @@
+.back-btn {
+  background: transparent;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: fixed;
+  top: 13px;
+  left: 13px;
+
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 500;
+}
+@media (min-width: 768px) {
+  .back-btn {
+    left: 11vw;
+  }
+}
