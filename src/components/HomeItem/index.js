@@ -6,6 +6,7 @@ const HomeItem = props => {
   const {playListData, type} = props
   const {id, name, imageUrl} = playListData
   let altVal
+
   if (type === 'playlist') {
     altVal = 'featured playlist'
   } else if (type === 'category') {
