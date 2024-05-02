@@ -12,9 +12,16 @@
   font-family: 'Roboto';
   font-size: 13px;
   font-weight: 500;
+
+  color: #fff;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .back-btn {
     left: 10.4vw;
   }
+}
+
+.back-btn:hover {
+  color: #193f;
 }

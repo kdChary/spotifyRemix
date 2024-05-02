@@ -17,7 +17,7 @@ const BackBtn = props => {
         type="button"
         onClick={toPrevious}
       >
-        <FaArrowLeft size="11" /> Back
+        <FaArrowLeft /> Back
       </button>
     </>
   )
