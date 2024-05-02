@@ -4,6 +4,8 @@ import moment from 'moment'
 
 import './index.css'
 import HomeItem from '../HomeItem'
+import Loading from '../LoadingPage'
+import Failure from '../ErrorPage'
 
 const apiConstant = {
   initial: 'INITIAL',
@@ -32,18 +34,14 @@ class HomeEditorPicks extends Component {
   modifyData = data => ({
     id: data.id,
     name: this.changeName(data.name),
-    imageUrl: data.icons[0].url,
+    imageUrl: data.images[0].url,
   })
-
-  retry = () => {
-    this.getEditorPicks()
-  }
 
   getEditorsPicks = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
     const timestamp = moment(new Date()).format('YYYY-MM-DDTHH:00:00')
 
-    const url = `https://apis2.ccbp.in/spotify-clone/categories?country=IN&timestamp=${timestamp}`
+    const url = `https://apis2.ccbp.in/spotify-clone/featured-playlists?country=IN&timestamp=${timestamp}`
     const token = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -57,7 +55,7 @@ class HomeEditorPicks extends Component {
       this.setState({fetchStatus: apiConstant.success})
 
       const data = await response.json()
-      const newData = data.categories.items.map(item => this.modifyData(item))
+      const newData = data.playlists.items.map(item => this.modifyData(item))
 
       this.setState({editorPicks: newData})
       //   console.log(newData)
@@ -71,19 +69,39 @@ class HomeEditorPicks extends Component {
     const {editorPicks} = this.state
 
     return (
-      <ul className="playlist">
-        {editorPicks.map(item => (
-          <HomeItem key={item.id} playListData={item} type="playlist" />
-        ))}
-      </ul>
+      <>
+        <h2 className="home-playlist-title">Editor&#39;s Picks</h2>
+        <ul className="playlist">
+          {editorPicks.map(item => (
+            <HomeItem key={item.id} playListData={item} type="playlist" />
+          ))}
+        </ul>
+      </>
     )
+  }
+
+  displayComponent = () => {
+    const {fetchStatus} = this.state
+
+    switch (fetchStatus) {
+      case apiConstant.inProgress:
+        return <Loading />
+
+      case apiConstant.success:
+        return <>{this.renderPlayList()}</>
+
+      case apiConstant.failure:
+        return <Failure retry={this.getEditorsPicks} />
+
+      default:
+        return null
+    }
   }
 
   render() {
     return (
       <div className="home-editors" data-testid="homeEditors">
-        <h2 className="home-playlist-title">Editor&#39;s Picks</h2>
-        {this.renderPlayList()}
+        {this.displayComponent()}
       </div>
     )
   }
