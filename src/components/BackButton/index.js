@@ -1,5 +1,5 @@
 import {withRouter} from 'react-router-dom'
-import {BsArrowLeft} from 'react-icons/bs'
+import {FaArrowLeft} from 'react-icons/fa'
 
 import './index.css'
 
@@ -17,7 +17,7 @@ const BackBtn = props => {
         type="button"
         onClick={toPrevious}
       >
-        <BsArrowLeft /> Back
+        <FaArrowLeft size="11" /> Back
       </button>
     </>
   )

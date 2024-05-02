@@ -6,8 +6,8 @@
   align-items: center;
   gap: 5px;
   position: fixed;
-  top: 13px;
-  left: 13px;
+  top: 0.5vh;
+  left: 0.7vw;
 
   font-family: 'Roboto';
   font-size: 13px;
@@ -15,6 +15,6 @@
 }
 @media (min-width: 768px) {
   .back-btn {
-    left: 11vw;
+    left: 10.4vw;
   }
 }
