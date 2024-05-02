@@ -12,27 +12,9 @@
   padding: 0 13px;
 }
 
-.navbar-lg {
-  width: 10%;
-  min-height: 100vh;
-
-  background-color: #040306;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  position: absolute;
-  left: 0;
-  padding: 13px 0;
-}
 @media (min-width: 768px) {
   .navbar-sm {
     display: none;
-  }
-
-  .navbar-lg {
-    display: flex;
   }
 }
 
@@ -43,19 +25,20 @@
   transition: 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
+.nav-options {
+  width: 73px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .logout-btn {
   border: none;
   background-color: transparent;
-
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-
   cursor: pointer;
   color: #ffffff;
   font-family: 'Inter';
-  font-size: 29px;
+  font-size: 19.6px;
 }
 
 /* Hover effects */

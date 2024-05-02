@@ -25,39 +25,16 @@ const Header = props => {
           className="nav-img"
         />
       </Link>
-      <FiMenu color="#ffffff" size="21" />
+      <div className="nav-options">
+        <FiMenu color="#ffffff" size="21" />
+        <button className="logout-btn" type="button" onClick={logOut}>
+          <RiLogoutCircleRLine />
+        </button>
+      </div>
     </nav>
   )
 
-  const renderSidebar = () => (
-    <nav className="navbar-lg" data-testid="navbarSm">
-      <Link to="/" className="link-item">
-        <img
-          src="https://res.cloudinary.com/dgga8cymk/image/upload/v1712240724/1Spotify/Login/remix-logo-sm.png"
-          alt="website logo"
-          className="nav-img"
-        />
-      </Link>
-      <button
-        type="button"
-        onClick={logOut}
-        className="logout-btn"
-        data-testid="logoutBtn"
-      >
-        <RiLogoutCircleRLine />
-      </button>
-      <button type="button" onClick={logOut} className="hide">
-        Logout
-      </button>
-    </nav>
-  )
-
-  return (
-    <>
-      {renderHeader()}
-      {renderSidebar()}
-    </>
-  )
+  return <>{renderHeader()}</>
 }
 
 export default withRouter(Header)
