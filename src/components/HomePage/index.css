@@ -1,11 +1,18 @@
 .home-page {
-  min-height: 90vh;
+  height: 90vh;
   width: 100%;
+  max-height: 100vh;
 
   display: flex;
   flex-direction: column;
   /* align-items: center; */
+  overflow: auto;
   background: #181818;
+  background-size: cover;
+  gap: 11px;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 @media (min-width: 768px) {
   .home-page {
@@ -20,15 +27,33 @@
 /* Styling the container for home page components */
 .home-editors {
   width: 100%;
-  padding: 11px;
-
-  /* background: #040306; */
 }
+
 .home-playlist-title {
   font-family: 'Assistant';
   color: #fff;
-  font-size: 21px;
+  font-size: 17px;
   font-style: oblique;
   letter-spacing: 0.9px;
   margin-top: 5px;
+  margin-left: 11px;
+}
+.playlist {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+
+  padding: 0;
+  height: 209px;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+@media (min-width: 768px) {
+  .playlist {
+    height: 275px;
+  }
+  .home-playlist-title {
+    font-size: 23px;
+  }
 }
