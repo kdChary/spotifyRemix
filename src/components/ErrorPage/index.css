@@ -24,12 +24,11 @@
   justify-content: center;
 }
 .failure-icon {
-  font-size: 27px;
-  color: #1db954;
+  width: 47px;
 }
 @media (min-width: 768px) {
   .failure-icon {
-    font-size: 33px;
+    width: 73px;
   }
 }
 
