@@ -8,6 +8,7 @@ import NotFound from './components/NotFoundPage'
 import HomePage from './components/HomePage'
 import GenreAndMoods from './components/GenreAndMoods'
 import Album from './components/AlbumDetails'
+import PlaylistDetails from './components/PlaylistDetails'
 
 // write your code here
 const App = () => (
@@ -20,6 +21,7 @@ const App = () => (
       component={GenreAndMoods}
     />
     <ProtectedRoute exact path="/album/:id" component={Album} />
+    <ProtectedRoute exact path="/playlist/:id" component={PlaylistDetails} />
     <Route path="/bad-path" component={NotFound} />
     <Redirect to="/bad-path" />
   </Switch>

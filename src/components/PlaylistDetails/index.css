@@ -1,0 +1,109 @@
+.playlists-page {
+  width: 100%;
+  height: 100vh;
+
+  background: #181818;
+  color: #fff;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 37px 11px;
+
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .playlists-page {
+    width: 90vw;
+  }
+}
+/* Styling album header */
+.playlist-header {
+  width: 80%;
+  display: flex;
+  gap: 13px;
+}
+
+.playlist-image {
+  width: 145px;
+  height: 145px;
+
+  border-radius: 11px;
+  align-self: center;
+}
+
+.playlist-details {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  margin-bottom: 9px;
+}
+.playlist-name {
+  font-family: 'Assistant';
+  font-size: 26.3px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  color: aliceblue;
+  margin: 5px 0;
+}
+.playlist-type,
+.playlist-artist {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 11px;
+
+  color: #e9eaee;
+  letter-spacing: 0.4px;
+  margin: 0;
+}
+
+/* Styling the track headings */
+.playlist-tracks {
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-track-headings {
+  padding: 0 2px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.6px;
+}
+.playlist-heading-item {
+  list-style-type: none;
+  width: 25%;
+
+  padding: 0;
+  padding-left: 11px;
+}
+.hash {
+  width: 5%;
+}
+.playlist-track-heading {
+  font-family: 'Inter';
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.4px;
+  margin: 0;
+}
+.line {
+  width: 100%;
+  height: 1px;
+
+  border: none;
+  border-top: solid 1.3px #cbcbcb;
+  margin: 1px;
+}
+@media (max-width: 767px) {
+  .track-headings {
+    display: none;
+  }
+  .line {
+    display: none;
+  }
+}
