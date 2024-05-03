@@ -1,5 +1,3 @@
-import {BsExclamationTriangleFill} from 'react-icons/bs'
-
 import './index.css'
 
 const Failure = props => {
