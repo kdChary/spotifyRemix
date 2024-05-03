@@ -1,0 +1,11 @@
+.track-item {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.track-item-data {
+  width: 30%;
+}
