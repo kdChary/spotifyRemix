@@ -1,5 +1,7 @@
 .loader {
   display: flex;
+  flex-direction: column;
+  /* gap: 33px; */
   justify-content: center;
   align-items: center;
 

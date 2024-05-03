@@ -69,7 +69,7 @@ class HomeNewReleases extends Component {
         <h1 className="home-playlist-title">New Releases</h1>
         <ul className="playlist">
           {newReleases.map(genre => (
-            <HomeItem key={genre.id} playListData={genre} type="" />
+            <HomeItem key={genre.id} playListData={genre} type="album" />
           ))}
         </ul>
       </>
