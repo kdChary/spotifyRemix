@@ -53,20 +53,16 @@ class GenreAndMoods extends Component {
 
     if (response.ok) {
       const data = await response.json()
-      const newData = data.playlists.items.map(eachItem => {
-        if (eachItem !== null) {
-          return {
-            id: eachItem.id,
-            name: this.changeName(eachItem.name),
-            imageUrl: eachItem.images[0].url,
-            tracks: eachItem.tracks.total,
-          }
-        }
-        return null
-      })
+      const validData = data.playlists.items.filter(item => item !== null)
+      const newData = validData.map(eachItem => ({
+        id: eachItem.id,
+        name: this.changeName(eachItem.name),
+        imageUrl: eachItem.images[0].url,
+        tracks: eachItem.tracks.total,
+      }))
 
       this.setState({fetchStatus: apiConstant.success, genresList: newData})
-      //   console.log(newData)
+      console.log(newData)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
       console.log('error')
