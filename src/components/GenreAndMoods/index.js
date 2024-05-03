@@ -6,6 +6,7 @@ import BackBtn from '../BackButton'
 import Sidebar from '../Sidebar'
 import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
+import GenreItem from '../GenreAndMoodsItem'
 
 const apiConstant = {
   initial: 'INITIAL',
@@ -74,7 +75,6 @@ class GenreAndMoods extends Component {
 
   renderGenresAndMoodsList = () => {
     const {genresList} = this.state
-    console.log(genresList)
     const {match} = this.props
     const {params} = match
     const {playlists} = params
@@ -82,7 +82,11 @@ class GenreAndMoods extends Component {
     return (
       <div className="categories-container">
         <h2 className="category-name">{playlists}</h2>
-        <ul className="genres-list">render here with a separate Component</ul>
+        <ul className="genres-list">
+          {genresList.map(genre => (
+            <GenreItem key={genre.id} genreData={genre} />
+          ))}
+        </ul>
       </div>
     )
   }
@@ -107,11 +111,13 @@ class GenreAndMoods extends Component {
 
   render() {
     return (
-      <div className="genre-moods-page" data-testid="genreMoodsPage">
+      <>
         <Sidebar />
-        <BackBtn />
-        {this.viewComponent()}
-      </div>
+        <div className="genre-moods-page" data-testid="genreMoodsPage">
+          <BackBtn />
+          {this.viewComponent()}
+        </div>
+      </>
     )
   }
 }
