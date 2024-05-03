@@ -30,3 +30,15 @@
   color: #fff;
   letter-spacing: 0.5px;
 }
+.genres-list {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border: solid 1px #fff;
+}

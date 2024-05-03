@@ -82,6 +82,7 @@ class GenreAndMoods extends Component {
     return (
       <div className="categories-container">
         <h2 className="category-name">{playlists}</h2>
+        <ul className="genres-list">render here with a separate Component</ul>
       </div>
     )
   }
