@@ -10,10 +10,17 @@ const HomePage = () => (
     <Header />
     <div className="home-page" data-testid="homePage">
       <Sidebar />
+
       <div className="home-items">
-        <HomeEditorPicks />
-        <HomeCategories />
-        <HomeNewReleases />
+        <div>
+          <HomeEditorPicks />
+        </div>
+        <div>
+          <HomeCategories />
+        </div>
+        <div>
+          <HomeNewReleases />
+        </div>
       </div>
     </div>
   </>
