@@ -12,13 +12,13 @@ const HomePage = () => (
       <Sidebar />
 
       <div className="home-items">
-        <div>
+        <div className="playlist-container">
           <HomeEditorPicks />
         </div>
-        <div>
+        <div className="playlist-container">
           <HomeCategories />
         </div>
-        <div>
+        <div className="playlist-container">
           <HomeNewReleases />
         </div>
       </div>
