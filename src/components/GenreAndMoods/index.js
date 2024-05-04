@@ -76,7 +76,7 @@ class GenreAndMoods extends Component {
     const {playlists} = params
 
     return (
-      <div className="categories-container">
+      <div className="categories-container" data-testid="categoriesContainer">
         <h2 className="category-name">{playlists}</h2>
         <ul className="genres-list">
           {genresList.map(genre => (
