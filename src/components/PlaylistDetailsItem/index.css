@@ -1,0 +1,26 @@
+.specific-playlist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+  font-size: 500;
+}
+
+.playlist-item-div {
+  width: 20%;
+  cursor: pointer;
+}
+
+.playlist-item-data {
+  font-family: 'Inter';
+}
+
+.specific-playlist-item:hover,
+.specific-playlist-item:active {
+  background-color: #457769;
+  border: solid 1px #457769;
+  border-radius: 5px;
+  font-size: 11.2px;
+  font-weight: 700;
+  /* transition: 1s all; */
+}

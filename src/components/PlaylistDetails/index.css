@@ -78,10 +78,10 @@
   width: 25%;
 
   padding: 0;
-  padding-left: 11px;
+  /* padding-left: 13px; */
 }
 .hash {
-  width: 5%;
+  width: 3%;
 }
 .playlist-track-heading {
   font-family: 'Inter';

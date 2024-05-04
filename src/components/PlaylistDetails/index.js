@@ -7,6 +7,7 @@ import BackBtn from '../BackButton'
 import Sidebar from '../Sidebar'
 import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
+import PlaylistItem from '../PlaylistDetailsItem'
 
 const apiConstant = {
   initial: 'INITIAL',
@@ -33,6 +34,17 @@ class PlaylistDetails extends Component {
     return val
   }
 
+  albumName = val => {
+    const indx = val.indexOf('(')
+    const end = val.length
+    if (indx > 0) {
+      const album = val.slice(indx, end)
+      const index = val.indexOf('\\') - 1
+      return album.slice(7, index)
+    }
+    return val
+  }
+
   convertDuration = val => {
     const minutes = Math.floor(val / 60000)
     const seconds = ((val % 60000) / 6000).toFixed(0)
@@ -54,6 +66,7 @@ class PlaylistDetails extends Component {
     artist: data.tracks.items[0].track.artists[0].name,
     tracks: data.tracks.items.map(song => ({
       trackArtist: song.track.artists[0].name,
+      trackAlbum: this.albumName(song.track.album.name),
       duration: this.convertDuration(song.track.duration_ms),
       trackImage:
         song.track.album.images[0] !== (null || undefined)
@@ -89,7 +102,7 @@ class PlaylistDetails extends Component {
       const newData = this.modifyData(data)
       this.setState({fetchStatus: apiConstant.success, playlists: newData})
 
-      console.log(data, newData)
+      //   console.log(data, newData)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
       console.log('Response error')
@@ -117,7 +130,7 @@ class PlaylistDetails extends Component {
   renderPlaylist = () => {
     const {playlists} = this.state
     const {tracks} = playlists
-    console.log(tracks)
+    // console.log(tracks)
 
     return (
       <>
@@ -149,9 +162,13 @@ class PlaylistDetails extends Component {
           </ul>
           <hr className="line" />
           <ul className="album-tracks-list">
-            {/* {albumTracks.map(track => (
-              <AlbumItem key={track.trackId} trackData={track} />
-            ))} */}
+            {tracks.map(track => (
+              <PlaylistItem
+                key={track.trackId}
+                trackData={track}
+                no={tracks.indexOf(track)}
+              />
+            ))}
           </ul>
         </div>
       </>
