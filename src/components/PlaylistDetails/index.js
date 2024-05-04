@@ -69,10 +69,12 @@ class PlaylistDetails extends Component {
     id: data.id,
     name: this.changeName(data.name),
     image: data.images[0].url,
-    artist: data.tracks.items[0].track.artists[0].name,
+    artist: data.tracks.items[0].track.artists
+      .map(artist => artist.name)
+      .join(' '),
     description: data.description,
     tracks: data.tracks.items.map(song => ({
-      trackArtist: song.track.artists[0].name,
+      trackArtist: song.track.artists.map(artist => artist.name).join(' '),
       trackAlbum: this.albumName(song.track.album.name),
       duration: this.convertDuration(song.track.duration_ms),
       trackImage:
@@ -109,7 +111,7 @@ class PlaylistDetails extends Component {
       const newData = this.modifyData(data)
       this.setState({fetchStatus: apiConstant.success, playlists: newData})
 
-      console.log(data, newData)
+      console.log(data)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
       console.log('Response error')
