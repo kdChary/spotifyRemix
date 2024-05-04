@@ -9,3 +9,13 @@
 .track-item-data {
   width: 30%;
 }
+
+.track-item:hover,
+.track-item:active {
+  background-color: #457769;
+  border: solid 1px #457769;
+  border-radius: 5px;
+  font-size: 11.2px;
+  font-weight: 700;
+  /* transition: 1s all; */
+}
