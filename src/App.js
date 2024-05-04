@@ -10,6 +10,8 @@ import GenreAndMoods from './components/GenreAndMoods'
 import Album from './components/AlbumDetails'
 import PlaylistDetails from './components/PlaylistDetails'
 
+document.title = 'spotifyRemix Ksd'
+
 // write your code here
 const App = () => (
   <Switch>
