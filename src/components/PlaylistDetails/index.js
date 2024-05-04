@@ -64,6 +64,7 @@ class PlaylistDetails extends Component {
     name: this.changeName(data.name),
     image: data.images[0].url,
     artist: data.tracks.items[0].track.artists[0].name,
+    description: data.description,
     tracks: data.tracks.items.map(song => ({
       trackArtist: song.track.artists[0].name,
       trackAlbum: this.albumName(song.track.album.name),
@@ -102,7 +103,7 @@ class PlaylistDetails extends Component {
       const newData = this.modifyData(data)
       this.setState({fetchStatus: apiConstant.success, playlists: newData})
 
-      //   console.log(data, newData)
+      console.log(data, newData)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
       console.log('Response error')
@@ -111,19 +112,22 @@ class PlaylistDetails extends Component {
 
   playlistsHeader = () => {
     const {playlists} = this.state
-    const {image, name, artist} = playlists
+    const {image, name, artist, description} = playlists
 
     return (
-      <div className="playlist-header">
-        <div>
-          <img src={image} alt="" className="playlist-image" />
+      <>
+        <div className="playlist-header">
+          <div>
+            <img src={image} alt="" className="playlist-image" />
+          </div>
+          <div className="playlist-details">
+            <p className="playlist-type">Editor&#39;s Picks</p>
+            <h2 className="playlist-name">{name}</h2>
+            <p className="playlist-artist">{artist}</p>
+          </div>
         </div>
-        <div className="playlist-details">
-          <p className="playlist-type">Editor&#39;s Picks</p>
-          <h2 className="playlist-name">{name}</h2>
-          <p className="playlist-artist">{artist}</p>
-        </div>
-      </div>
+        <p className="playlist-artist">{description}</p>
+      </>
     )
   }
 
