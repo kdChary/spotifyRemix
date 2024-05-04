@@ -120,7 +120,7 @@ class PlaylistDetails extends Component {
 
   playlistsHeader = () => {
     const {playlists} = this.state
-    const {image, name, artist, description} = playlists
+    const {image, name, description} = playlists
 
     return (
       <>
