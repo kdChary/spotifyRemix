@@ -86,10 +86,10 @@ class HomeCategories extends Component {
         return <Loading />
 
       case apiConstant.success:
-        return <>{this.renderPlayList()}</>
+        return <>{this.renderCategories()}</>
 
       case apiConstant.failure:
-        return <Failure retry={this.getEditorsPicks} />
+        return <Failure retry={this.getHomeCategories} />
 
       default:
         return null
@@ -99,7 +99,7 @@ class HomeCategories extends Component {
   render() {
     return (
       <div className="categories" data-testid="categories">
-        {this.renderCategories()}
+        {this.displayComponent()}
       </div>
     )
   }
