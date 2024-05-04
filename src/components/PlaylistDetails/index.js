@@ -8,6 +8,7 @@ import Sidebar from '../Sidebar'
 import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
 import PlaylistItem from '../PlaylistDetailsItem'
+import AudioPlayer from '../AudioPlayer'
 
 const apiConstant = {
   initial: 'INITIAL',
@@ -20,10 +21,15 @@ class PlaylistDetails extends Component {
   state = {
     playlists: {},
     fetchStatus: apiConstant.initial,
+    selectedSong: {},
   }
 
   componentDidMount() {
     this.getPlaylists()
+  }
+
+  chosenSong = data => {
+    this.setState({selectedSong: data})
   }
 
   changeName = val => {
@@ -171,6 +177,7 @@ class PlaylistDetails extends Component {
                 key={track.trackId}
                 trackData={track}
                 no={tracks.indexOf(track)}
+                playSong={this.chosenSong}
               />
             ))}
           </ul>
@@ -198,6 +205,8 @@ class PlaylistDetails extends Component {
   }
 
   render() {
+    const {selectedSong, playlists} = this.state
+
     return (
       <>
         <Sidebar />
@@ -205,6 +214,13 @@ class PlaylistDetails extends Component {
           <BackBtn />
           {this.playlistsHeader()}
           {this.viewPlaylistDetails()}
+          {selectedSong.trackId !== undefined && (
+            <AudioPlayer
+              key={selectedSong.trackId}
+              trackData={selectedSong}
+              image={playlists.image}
+            />
+          )}
         </div>
       </>
     )
