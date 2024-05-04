@@ -7,6 +7,7 @@ import Sidebar from '../Sidebar'
 import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
 import AlbumItem from '../AlbumItem'
+import AudioPlayer from '../AudioPlayer'
 
 const apiConstant = {
   initial: 'INITIAL',
@@ -19,6 +20,7 @@ class Album extends Component {
   state = {
     fetchStatus: apiConstant.initial,
     albumsList: {},
+    selectedSong: {},
   }
 
   componentDidMount() {
@@ -56,6 +58,10 @@ class Album extends Component {
     })),
   })
 
+  chosenSong = data => {
+    this.setState({selectedSong: data})
+  }
+
   getAlbums = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
 
@@ -80,7 +86,7 @@ class Album extends Component {
 
       this.setState({fetchStatus: apiConstant.success, albumsList: newData})
 
-      //   console.log(newData)
+      //   console.log(data)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
       console.log('response Error')
@@ -133,7 +139,11 @@ class Album extends Component {
           <hr className="line" />
           <ul className="album-tracks-list">
             {albumTracks.map(track => (
-              <AlbumItem key={track.trackId} trackData={track} />
+              <AlbumItem
+                key={track.trackId}
+                trackData={track}
+                playSong={this.chosenSong}
+              />
             ))}
           </ul>
         </div>
@@ -160,12 +170,20 @@ class Album extends Component {
   }
 
   render() {
+    const {selectedSong, albumsList} = this.state
+
     return (
       <>
         <Sidebar />
         <div className="albums-page" data-testid="albumsPage">
           <BackBtn />
           {this.viewAlbumComponent()}
+          {selectedSong.trackId !== undefined && (
+            <AudioPlayer
+              trackData={selectedSong}
+              image={albumsList.albumImage}
+            />
+          )}
         </div>
       </>
     )

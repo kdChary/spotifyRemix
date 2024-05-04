@@ -1,11 +1,11 @@
 import './index.css'
 
 const AlbumItem = props => {
-  const {trackData} = props
+  const {trackData, playSong} = props
   const {trackName, trackDuration, trackArtist, trackNumber} = trackData
 
   return (
-    <li className="track-item">
+    <li className="track-item" onClick={() => playSong(trackData)}>
       <div className="hash">
         <p className="track-item-text">{trackNumber}</p>
       </div>
