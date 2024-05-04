@@ -10,7 +10,7 @@
   right: 0;
   padding: 37px 11px;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 @media (min-width: 768px) {
   .albums-page {
@@ -110,7 +110,7 @@
 .album-tracks-list {
   padding: 0 2px;
   width: 100%;
-  height: 55vh;
+  height: 65vh;
 
   display: flex;
   flex-direction: column;
