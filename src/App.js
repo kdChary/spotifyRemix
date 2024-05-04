@@ -1,6 +1,7 @@
 // importing package components..
 import {Route, Switch, Redirect} from 'react-router-dom'
 
+// importing all the defined components
 import './App.css'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoginForm from './components/LoginPage'
@@ -10,9 +11,10 @@ import GenreAndMoods from './components/GenreAndMoods'
 import Album from './components/AlbumDetails'
 import PlaylistDetails from './components/PlaylistDetails'
 
+// Updating the title using DOM
 document.title = 'spotifyRemix Ksd'
 
-// write your code here
+// Routing for all the components.
 const App = () => (
   <Switch>
     <Route exact path="/login" component={LoginForm} />
