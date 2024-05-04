@@ -1,11 +1,15 @@
 import './index.css'
 // trackImage,
 const PlaylistItem = props => {
-  const {trackData, no} = props
+  const {trackData, no, playSong} = props
   const {trackName, trackArtist, trackAlbum, duration, addedAt} = trackData
 
   return (
-    <li className="specific-playlist-item" data-testid="specificPlaylistItem">
+    <li
+      className="specific-playlist-item"
+      data-testid="specificPlaylistItem"
+      onClick={() => playSong(trackData)}
+    >
       <div className="hash">
         <p>{no + 1}</p>
       </div>
