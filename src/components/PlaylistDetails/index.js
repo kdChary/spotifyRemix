@@ -180,7 +180,7 @@ class PlaylistDetails extends Component {
     return (
       <>
         <Sidebar />
-        <div className="playlists-page" data-testid="playlistsPage">
+        <div className="playlists-page" data-testid="playlistDetails">
           <BackBtn />
           {this.playlistsHeader()}
           {this.viewPlaylistDetails()}
