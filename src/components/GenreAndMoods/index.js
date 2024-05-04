@@ -62,7 +62,7 @@ class GenreAndMoods extends Component {
       }))
 
       this.setState({fetchStatus: apiConstant.success, genresList: newData})
-      console.log(newData)
+      console.log(data)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
       console.log('error')
