@@ -82,7 +82,7 @@ class PlaylistDetails extends Component {
           ? song.track.album.images[0].url
           : 'https://i.scdn.co/image/ab67706f0000000366c4920349468f0970205a6a',
       trackId: song.track.id,
-      trackName: this.changeName(song.track.name),
+      trackName: song.track.name,
       popularity: song.track.popularity,
       previewUrl: song.track.preview_url,
       addedAt: this.findDistanceFromNow(song.added_at),
