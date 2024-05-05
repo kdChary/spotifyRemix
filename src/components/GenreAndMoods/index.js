@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
+// importing self-defined components.
 import './index.css'
 import BackBtn from '../BackButton'
 import Sidebar from '../Sidebar'
@@ -8,12 +9,8 @@ import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
 import GenreItem from '../GenreAndMoodsItem'
 
-const apiConstant = {
-  initial: 'INITIAL',
-  inProgress: 'IN_PROGRESS',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-}
+// importing utility functions.
+import {apiConstant, modifyGenreAndMoods} from '../../utils/functions'
 
 class GenreAndMoods extends Component {
   state = {
@@ -25,14 +22,7 @@ class GenreAndMoods extends Component {
     this.getGenreAndMoods()
   }
 
-  changeName = val => {
-    const indx = val.indexOf('(')
-    if (indx > 0) {
-      return val.slice(0, indx)
-    }
-    return val
-  }
-
+  // function to fetch specific Genre&Moods from API
   getGenreAndMoods = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
 
@@ -50,25 +40,21 @@ class GenreAndMoods extends Component {
     }
 
     const response = await fetch(url, options)
+    const data = await response.json()
 
     if (response.ok) {
-      const data = await response.json()
       const validData = data.playlists.items.filter(item => item !== null)
-      const newData = validData.map(eachItem => ({
-        id: eachItem.id,
-        name: this.changeName(eachItem.name),
-        imageUrl: eachItem.images[0].url,
-        tracks: eachItem.tracks.total,
-      }))
+      const newData = validData.map(eachItem => modifyGenreAndMoods(eachItem))
 
       this.setState({fetchStatus: apiConstant.success, genresList: newData})
-      console.log(data)
+      //   console.log(data)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
-      console.log('error')
+      console.log(`${data.error_msg}`)
     }
   }
 
+  // JSX to display fetched Genre&Moods.
   renderGenresAndMoodsList = () => {
     const {genresList} = this.state
     const {match} = this.props
@@ -87,6 +73,7 @@ class GenreAndMoods extends Component {
     )
   }
 
+  // Switch case to display the page states.
   viewComponent = () => {
     const {fetchStatus} = this.state
 
