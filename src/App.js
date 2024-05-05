@@ -11,9 +11,6 @@ import GenreAndMoods from './components/GenreAndMoods'
 import Album from './components/AlbumDetails'
 import PlaylistDetails from './components/PlaylistDetails'
 
-// Updating the title using DOM
-document.title = 'spotifyRemix Ksd'
-
 // Routing for all the components.
 const App = () => (
   <Switch>
