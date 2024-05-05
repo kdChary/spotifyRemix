@@ -1,42 +1,59 @@
 .player-container {
   width: 100%;
-  height: 10vh;
+  height: 71px;
 
   background-color: #181818;
   border: none;
   border-top: solid 2px #455367;
 
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 11px 33px;
+  color: #fff;
+
+  position: fixed;
+  right: 0;
+  bottom: 0;
+
+  padding: 5px;
+  margin-top: 1px;
+  cursor: pointer;
+  outline: none;
+}
+@media (min-width: 768px) {
+  .player-container {
+    width: 90vw;
+    padding: 0 33px;
+  }
 }
 .player-container:hover {
   border-top-color: #17da37;
+  color: #17da37;
 }
 .left-section {
+  width: 120px;
   display: flex;
   align-items: center;
+  /* margin-left: 7px; */
 }
 .song-image {
-  width: 56px;
-  height: 56px;
+  width: 84px;
+  height: 53px;
+  border-radius: 6px;
 }
 .song-details {
   margin-top: auto;
   margin-left: 5px;
+  width: 100%;
 }
 .song-name {
   font-family: 'Assistant';
+  font-size: 10px;
   margin: 0;
 }
 .song-artist {
   font-family: 'Inter';
-  font-size: 10px;
+  font-size: 8px;
   color: #9b9b9b;
   font-weight: 500;
   margin: 0;
@@ -48,50 +65,38 @@
   margin: auto;
 }
 .music-player {
+  display: none;
   height: 45px;
   width: 100%;
 }
-
-/* Styling Audio Controls */
-.music-controls {
-  display: none;
-  align-items: center;
+@media (min-width: 768px) {
+  .left-section {
+    width: 20%;
+  }
+  .music-player {
+    display: block;
+  }
 }
+
 .play-pause-btn {
-  border: solid 1.2px #fff;
+  border: none;
   border-radius: 50%;
+  background-color: transparent;
 
-  height: 33px;
   width: 33px;
-
+  height: 33px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
+  font-size: 17px;
+  text-align: center;
+  color: #fff;
   cursor: pointer;
   outline: none;
-
-  color: #17da37;
 }
-.play-pause-btn:hover,
-.play-pause-btn:active {
-  border-color: #17da37;
-}
-
-.progressbar {
-  border: none;
-  border-radius: 2px;
-  width: 395px;
-  height: 4px;
-
-  appearance: none;
-  background: rgb(151, 233, 151);
-}
-
-.progressbar::before {
-  width: 10%;
-  height: 4px;
-  content: '';
-
-  background-color: #17da37;
+@media (min-width: 768px) {
+  .play-pause-btn {
+    display: none;
+  }
 }
