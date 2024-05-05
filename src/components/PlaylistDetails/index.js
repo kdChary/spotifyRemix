@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import moment from 'moment'
 
+// importing self defined components.
 import './index.css'
 import BackBtn from '../BackButton'
 import Sidebar from '../Sidebar'
@@ -10,12 +10,8 @@ import Failure from '../ErrorPage'
 import PlaylistItem from '../PlaylistDetailsItem'
 import AudioPlayer from '../AudioPlayer'
 
-const apiConstant = {
-  initial: 'INITIAL',
-  inProgress: 'IN_PROGRESS',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-}
+// importing self defined utility functions.
+import {apiConstant, modifyPlaylistData} from '../../utils/functions'
 
 class PlaylistDetails extends Component {
   state = {
@@ -28,67 +24,12 @@ class PlaylistDetails extends Component {
     this.getPlaylists()
   }
 
+  // Function to update state with playing song.
   chosenSong = data => {
     this.setState({selectedSong: data})
   }
 
-  changeName = val => {
-    const indx = val.indexOf('(')
-    if (indx > 0) {
-      return val.slice(0, indx)
-    }
-    return val
-  }
-
-  albumName = val => {
-    const indx = val.indexOf('(')
-    const end = val.length
-    if (indx > 0) {
-      const album = val.slice(indx, end)
-      const index = val.indexOf('\\') - 1
-      return album.slice(7, index)
-    }
-    return val
-  }
-
-  convertDuration = val => {
-    const minutes = Math.floor(val / 60000)
-    const seconds = ((val % 60000) / 6000).toFixed(0)
-
-    const time = `${minutes}:${seconds <= 9 ? `0${seconds}` : seconds}`
-    return time
-  }
-
-  findDistanceFromNow = date => {
-    const newDate = new Date(date)
-
-    return moment(newDate).fromNow()
-  }
-
-  modifyData = data => ({
-    id: data.id,
-    name: this.changeName(data.name),
-    image: data.images[0].url,
-    artist: data.tracks.items[0].track.artists
-      .map(artist => artist.name)
-      .join(' '),
-    description: data.description,
-    tracks: data.tracks.items.map(song => ({
-      trackArtist: song.track.artists.map(artist => artist.name).join(' '),
-      trackAlbum: this.albumName(song.track.album.name),
-      duration: this.convertDuration(song.track.duration_ms),
-      trackImage:
-        song.track.album.images[0] !== (null || undefined)
-          ? song.track.album.images[0].url
-          : 'https://i.scdn.co/image/ab67706f0000000366c4920349468f0970205a6a',
-      trackId: song.track.id,
-      trackName: song.track.name,
-      popularity: song.track.popularity,
-      previewUrl: song.track.preview_url,
-      addedAt: this.findDistanceFromNow(song.added_at),
-    })),
-  })
-
+  // Function to fetch the Specific Playlists from Database.
   getPlaylists = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
 
@@ -105,40 +46,43 @@ class PlaylistDetails extends Component {
       },
     }
     const response = await fetch(url, options)
+    const data = await response.json()
 
     if (response.ok) {
-      const data = await response.json()
-      const newData = this.modifyData(data)
+      const newData = modifyPlaylistData(data)
       this.setState({fetchStatus: apiConstant.success, playlists: newData})
 
-      console.log(data)
+      //   console.log(data)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
-      console.log('Response error')
+      console.log(`${data.error_msg}`)
     }
   }
 
+  // JSX to display Playlist title and cover image.
   playlistsHeader = () => {
     const {playlists} = this.state
-    const {image, name, description} = playlists
+    const {image, name, artist} = playlists
+    // TODO: removed description to beautify.
 
     return (
       <>
         <div className="playlist-header">
           <div>
-            <img src={image} alt="" className="playlist-image" />
+            <img src={image} alt={name} className="playlist-image" />
           </div>
           <div className="playlist-details">
             <p className="playlist-type">Editor&#39;s Picks</p>
             <h2 className="playlist-name">{name}</h2>
-            {/* <p className="playlist-artist">{artist}</p> */}
+            <p className="playlist-artist">{artist}</p>
           </div>
         </div>
-        <p className="playlist-artist">{description}</p>
+        {/* <p className="playlist-artist">{description}</p> */}
       </>
     )
   }
 
+  // JSX to display the received tracks.
   renderPlaylist = () => {
     const {playlists} = this.state
     const {tracks} = playlists
@@ -148,8 +92,8 @@ class PlaylistDetails extends Component {
       <>
         <div className="playlist-tracks">
           <ul className="playlist-track-headings">
-            <li className="heading-item hash">
-              <p className="playlist-track-heading"> </p>
+            <li className="playlist-heading-item hash">
+              <p className="playlist-track-heading">#</p>
             </li>
 
             <li className="playlist-heading-item">
@@ -188,6 +132,7 @@ class PlaylistDetails extends Component {
     )
   }
 
+  // Switch case to display the page states.
   viewPlaylistDetails = () => {
     const {fetchStatus} = this.state
 

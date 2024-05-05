@@ -19,44 +19,81 @@
 }
 /* Styling album header */
 .playlist-header {
-  width: 80%;
+  width: 100%;
   display: flex;
-  gap: 13px;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .playlist-header {
+    width: 80%;
+    flex-direction: row;
+    gap: 13px;
+  }
 }
 
 .playlist-image {
-  width: 145px;
-  height: 145px;
+  width: 115px;
+  height: 115px;
 
   border-radius: 11px;
-  align-self: center;
 }
 
 .playlist-details {
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
   margin-bottom: 9px;
+  text-align: center;
 }
 .playlist-name {
   font-family: 'Assistant';
-  font-size: 26.3px;
+  font-size: 16.3px;
   font-weight: 700;
 
   letter-spacing: 0.5px;
-  line-height: 1.5;
   color: aliceblue;
-  margin: 5px 0;
+  margin: 0 0 2px 0;
 }
-.playlist-type,
 .playlist-artist {
-  font-family: 'Inter';
+  font-family: 'Assistant';
+  font-weight: 500;
+  font-size: 9px;
+
+  color: #94a3b8;
+  letter-spacing: 0.4px;
+  margin: 0;
+}
+.playlist-type {
+  display: none;
+  color: #94a3b8;
+
+  font-family: 'Roboto';
   font-weight: 500;
   font-size: 11px;
 
-  color: #e9eaee;
+  margin-bottom: 2px;
   letter-spacing: 0.4px;
-  margin: 0;
+}
+@media (min-width: 768px) {
+  .playlist-image {
+    width: 145px;
+    height: 145px;
+
+    align-self: center;
+  }
+  .playlist-details {
+    align-self: flex-end;
+  }
+  .playlist-name {
+    font-size: 23px;
+  }
+  .playlist-artist {
+    font-size: 11px;
+    text-align: left;
+  }
+  .playlist-type {
+    display: flex;
+  }
 }
 
 /* Styling the track headings */
@@ -78,7 +115,6 @@
   width: 25%;
 
   padding: 0;
-  /* padding-left: 13px; */
 }
 .hash {
   width: 3%;
@@ -101,6 +137,9 @@
 }
 @media (max-width: 767px) {
   .track-headings {
+    display: none;
+  }
+  .playlist-heading-item {
     display: none;
   }
   .line {
