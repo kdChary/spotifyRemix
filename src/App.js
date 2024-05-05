@@ -11,7 +11,7 @@ import GenreAndMoods from './components/GenreAndMoods'
 import Album from './components/AlbumDetails'
 import PlaylistDetails from './components/PlaylistDetails'
 
-// Routing for all the components.
+// Routing the components.
 const App = () => (
   <Switch>
     <Route exact path="/login" component={LoginForm} />
