@@ -161,13 +161,15 @@ class PlaylistDetails extends Component {
           <BackBtn />
           {this.playlistsHeader()}
           {this.viewPlaylistDetails()}
-          {selectedSong.trackId !== undefined && (
-            <AudioPlayer
-              key={selectedSong.trackId}
-              trackData={selectedSong}
-              image={playlists.image}
-            />
-          )}
+          <div>
+            {selectedSong.trackId !== undefined && (
+              <AudioPlayer
+                key={selectedSong.trackId}
+                trackData={selectedSong}
+                image={playlists.image}
+              />
+            )}
+          </div>
         </div>
       </>
     )
