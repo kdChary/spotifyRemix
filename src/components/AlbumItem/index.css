@@ -6,10 +6,56 @@
   align-items: center;
 }
 
+.large {
+  display: none;
+}
+.small {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+
+  /* border: solid 1px #fff; */
+}
+@media (min-width: 768px) {
+  .large {
+    display: flex;
+  }
+  .small {
+    display: none;
+  }
+}
+
 .track-item-data {
   width: 30%;
 }
-
+.track-no {
+  display: none;
+}
+.song {
+  font-family: 'Assistant';
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+.artist {
+  font-family: 'Assistant';
+  font-size: 11px;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+.duration {
+  font-family: 'Assistant';
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
 .track-item:hover,
 .track-item:active {
   background-color: #457769;
@@ -18,4 +64,11 @@
   font-size: 11.2px;
   font-weight: 700;
   /* transition: 1s all; */
+}
+
+.track-item-text {
+  font-family: 'Assistant';
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }

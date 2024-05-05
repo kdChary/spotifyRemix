@@ -6,17 +6,28 @@ const AlbumItem = props => {
 
   return (
     <li className="track-item" onClick={() => playSong(trackData)}>
-      <div className="hash">
-        <p className="track-item-text">{trackNumber}</p>
+      <div className="hash large">
+        <p className="track-item-text ">{trackNumber}</p>
       </div>
-      <div className="track-item-data">
-        <p className="track-item-text">{trackName}</p>
+      <div className="track-item-data large">
+        <p className="track-item-text ">{trackName}</p>
       </div>
-      <div className="track-item-data">
+      <div className="track-item-data large">
         <p className="track-item-text">{trackArtist}</p>
       </div>
-      <div className="track-item-data">
+      <div className="track-item-data large">
         <p className="track-item-text">{trackDuration}</p>
+      </div>
+
+      {/* JSX to display in small devices */}
+      <div className="small">
+        <div>
+          <p className="song">{trackName}</p>
+          <p className="artist">{trackArtist}</p>
+        </div>
+        <div>
+          <p className="duration">{trackDuration}</p>
+        </div>
       </div>
     </li>
   )
