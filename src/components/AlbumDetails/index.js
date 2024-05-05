@@ -1,6 +1,8 @@
+// importing components from dependencies.
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
+// importing defined components
 import './index.css'
 import BackBtn from '../BackButton'
 import Sidebar from '../Sidebar'
@@ -9,12 +11,8 @@ import Failure from '../ErrorPage'
 import AlbumItem from '../AlbumItem'
 import AudioPlayer from '../AudioPlayer'
 
-const apiConstant = {
-  initial: 'INITIAL',
-  inProgress: 'IN_PROGRESS',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-}
+// importing functions from utils folder
+import {apiConstant, modifyAlumData} from '../../utils/functions/index'
 
 class Album extends Component {
   state = {
@@ -27,41 +25,12 @@ class Album extends Component {
     this.getAlbums()
   }
 
-  changeName = val => {
-    const indx = val.indexOf('(')
-    if (indx > 0) {
-      return val.slice(0, indx)
-    }
-    return val
-  }
-
-  convertDuration = val => {
-    const minutes = Math.floor(val / 60000)
-    const seconds = ((val % 60000) / 6000).toFixed(0)
-
-    const time = `${minutes}:${seconds <= 9 ? `0${seconds}` : seconds}`
-    return time
-  }
-
-  modifyData = data => ({
-    albumArtist: data.artists[0].name,
-    albumId: data.id,
-    albumImage: data.images[0].url,
-    albumName: this.changeName(data.name),
-    albumTracks: data.tracks.items.map(item => ({
-      trackId: item.id,
-      trackName: this.changeName(item.name),
-      trackDuration: this.convertDuration(item.duration_ms),
-      trackArtist: item.artists[0].name,
-      trackNumber: item.track_number,
-      previewUrl: item.preview_url,
-    })),
-  })
-
+  // function to select a song and add to state.
   chosenSong = data => {
     this.setState({selectedSong: data})
   }
 
+  // function to fetch albums from Database.
   getAlbums = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
 
@@ -82,7 +51,7 @@ class Album extends Component {
 
     if (response.ok) {
       const data = await response.json()
-      const newData = this.modifyData(data)
+      const newData = modifyAlumData(data)
 
       this.setState({fetchStatus: apiConstant.success, albumsList: newData})
 
@@ -93,6 +62,7 @@ class Album extends Component {
     }
   }
 
+  // JSX to display album name, and image
   albumHeader = () => {
     const {albumsList} = this.state
     const {albumName, albumImage, albumArtist} = albumsList
@@ -105,12 +75,16 @@ class Album extends Component {
         <div className="album-details">
           <p className="album-type">New Releases</p>
           <h2 className="album-name">{albumName}</h2>
-          <p className="album-artist">{albumArtist}</p>
+          <p className="album-artist">
+            <span>Album by </span>
+            {albumArtist}
+          </p>
         </div>
       </div>
     )
   }
 
+  // JSX to display fetched tracks from API.
   renderAlbumTracks = () => {
     const {albumsList} = this.state
     const {albumTracks} = albumsList
@@ -151,6 +125,7 @@ class Album extends Component {
     )
   }
 
+  // Switch case to display different states of the page.
   viewAlbumComponent = () => {
     const {fetchStatus} = this.state
 

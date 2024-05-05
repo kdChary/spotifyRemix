@@ -20,44 +20,106 @@
 
 /* Styling album header */
 .album-header {
-  width: 80%;
+  width: 100%;
   display: flex;
-  gap: 13px;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  gap: 3px;
+}
+@media (min-width: 768px) {
+  .album-header {
+    width: 80%;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 13px;
+  }
 }
 
 .album-image {
   width: 145px;
   height: 145px;
 
-  border-radius: 11px;
-  align-self: center;
+  border-radius: 9px;
 }
+@media (min-width: 768px) {
+  .album-image {
+    width: 175px;
+    height: 175px;
 
+    border-radius: 11px;
+  }
+}
 .album-details {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-  margin-bottom: 9px;
+  display: block;
 }
 .album-name {
   font-family: 'Assistant';
-  font-size: 26.3px;
-  font-weight: 700;
+  font-size: 17.3px;
+  /* font-weight: 700; */
 
   letter-spacing: 0.5px;
   line-height: 1.5;
   color: aliceblue;
   margin: 5px 0;
+  text-align: center;
 }
-.album-type,
+.album-type {
+  display: none;
+}
 .album-artist {
   font-family: 'Inter';
   font-weight: 500;
   font-size: 11px;
 
-  color: #e9eaee;
   letter-spacing: 0.4px;
   margin: 0;
+  color: #94a3ba;
+  text-align: center;
+}
+span {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 11px;
+
+  letter-spacing: 0.4px;
+  margin: 0;
+  color: #94a3ba;
+}
+
+@media (min-width: 768px) {
+  .album-details {
+    align-self: flex-end;
+    margin-bottom: 9px;
+  }
+  .album-name {
+    font-family: 'Assistant';
+    font-size: 26.3px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    color: aliceblue;
+    margin: 5px 0;
+    text-align: left;
+  }
+  .album-type,
+  .album-artist {
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 11px;
+
+    color: #e9eaee;
+    letter-spacing: 0.4px;
+    margin: 0;
+    text-align: left;
+  }
+  .album-type {
+    display: block;
+  }
+  span {
+    display: none;
+  }
 }
 
 /* Styling the track headings */
@@ -80,6 +142,7 @@
 .hash {
   width: 5%;
   padding-left: 5px;
+  color: #94a3ba;
 }
 .track-heading {
   font-family: 'Inter';
@@ -114,7 +177,7 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   overflow: auto;
 
   margin-top: 0;
