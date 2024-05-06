@@ -1,20 +1,13 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import moment from 'moment'
 
 import './index.css'
 import HomeItem from '../HomeItem'
 import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
 
-const apiConstant = {
-  initial: 'INITIAL',
-  inProgress: 'IN_PROGRESS',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-}
-
-// TODO: Create a separate component for list items.
+// Importing Self defined Utility functions.
+import {apiConstant, modifyEditorsPicks, timeStamp} from '../../utils/functions'
 
 class HomeEditorPicks extends Component {
   state = {fetchStatus: apiConstant.initial, editorPicks: []}
@@ -23,25 +16,11 @@ class HomeEditorPicks extends Component {
     this.getEditorsPicks()
   }
 
-  changeName = val => {
-    const indx = val.indexOf('(')
-    if (indx > 0) {
-      return val.slice(0, indx)
-    }
-    return val
-  }
-
-  modifyData = data => ({
-    id: data.id,
-    name: this.changeName(data.name),
-    imageUrl: data.images[0].url,
-  })
-
+  // Fetching response from the API
   getEditorsPicks = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
-    const timestamp = moment(new Date()).format('YYYY-MM-DDTHH:00:00')
 
-    const url = `https://apis2.ccbp.in/spotify-clone/featured-playlists?country=IN&timestamp=${timestamp}`
+    const url = `https://apis2.ccbp.in/spotify-clone/featured-playlists?country=IN&timestamp=${timeStamp}`
     const token = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -55,7 +34,7 @@ class HomeEditorPicks extends Component {
       this.setState({fetchStatus: apiConstant.success})
 
       const data = await response.json()
-      const newData = data.playlists.items.map(item => this.modifyData(item))
+      const newData = data.playlists.items.map(item => modifyEditorsPicks(item))
 
       this.setState({editorPicks: newData})
       //   console.log(newData)
@@ -65,12 +44,12 @@ class HomeEditorPicks extends Component {
     }
   }
 
+  // JSX to render the Fetched results.
   renderPlayList = () => {
     const {editorPicks} = this.state
 
     return (
       <>
-        <h2 className="home-playlist-title">Editor&#39;s Picks</h2>
         <ul className="playlist">
           {editorPicks.map(item => (
             <HomeItem key={item.id} playListData={item} type="playlist" />
@@ -80,6 +59,7 @@ class HomeEditorPicks extends Component {
     )
   }
 
+  // Switch statement to display Page status.
   displayComponent = () => {
     const {fetchStatus} = this.state
 
@@ -101,6 +81,7 @@ class HomeEditorPicks extends Component {
   render() {
     return (
       <div className="home-editors" data-testid="homeEditors">
+        <h2 className="home-playlist-title">Editor&#39;s Picks</h2>
         {this.displayComponent()}
       </div>
     )

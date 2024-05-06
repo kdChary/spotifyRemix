@@ -48,9 +48,9 @@ class Album extends Component {
       },
     }
     const response = await fetch(url, options)
+    const data = await response.json()
 
     if (response.ok) {
-      const data = await response.json()
       const newData = modifyAlumData(data)
 
       this.setState({fetchStatus: apiConstant.success, albumsList: newData})
@@ -58,7 +58,7 @@ class Album extends Component {
       //   console.log(data)
     } else {
       this.setState({fetchStatus: apiConstant.failure})
-      console.log('response Error')
+      console.log(`${data.error_msg}`)
     }
   }
 

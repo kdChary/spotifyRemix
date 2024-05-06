@@ -17,7 +17,7 @@ const Failure = props => {
         />
         <p className="failure-text">Something went wrong. Please try again</p>
         <button className="failure-btn" type="button" onClick={btnClicked}>
-          Try again
+          Try Again
         </button>
       </div>
     </div>

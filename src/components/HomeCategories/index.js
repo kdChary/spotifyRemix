@@ -1,18 +1,18 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import moment from 'moment'
 
+// Importing self defined components.
 import './index.css'
 import HomeItem from '../HomeItem'
 import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
 
-const apiConstant = {
-  initial: 'INITIAL',
-  inProgress: 'IN_PROGRESS',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-}
+// importing self defined utility functions.
+import {
+  apiConstant,
+  modifyHomeCategories,
+  timeStamp,
+} from '../../utils/functions'
 
 class HomeCategories extends Component {
   state = {
@@ -24,25 +24,11 @@ class HomeCategories extends Component {
     this.getHomeCategories()
   }
 
-  changeName = val => {
-    const indx = val.indexOf('(')
-    if (indx > 0) {
-      return val.slice(0, indx)
-    }
-    return val
-  }
-
-  modifyData = data => ({
-    id: data.id,
-    name: this.changeName(data.name),
-    imageUrl: data.icons[0].url,
-  })
-
+  // Fetching categories from the API
   getHomeCategories = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
 
     const token = Cookies.get('jwt_token')
-    const timeStamp = moment(new Date()).format('YYYY-MM-DDTHH:00:00')
 
     const url = `https://apis2.ccbp.in/spotify-clone/categories?country=IN&timestamp=${timeStamp}`
     const options = {
@@ -54,7 +40,9 @@ class HomeCategories extends Component {
 
     if (response.ok) {
       const data = await response.json()
-      const newData = data.categories.items.map(item => this.modifyData(item))
+      const newData = data.categories.items.map(item =>
+        modifyHomeCategories(item),
+      )
 
       this.setState({categoriesData: newData, fetchStatus: apiConstant.success})
     } else {
@@ -63,12 +51,12 @@ class HomeCategories extends Component {
     }
   }
 
+  // JSX to display the fetched response.
   renderCategories = () => {
     const {categoriesData} = this.state
 
     return (
       <>
-        <h1 className="home-playlist-title">Genres & Moods</h1>
         <ul className="playlist">
           {categoriesData.map(genre => (
             <HomeItem key={genre.id} playListData={genre} type="category" />
@@ -78,6 +66,7 @@ class HomeCategories extends Component {
     )
   }
 
+  // Switch case to display the page states.
   displayComponent = () => {
     const {fetchStatus} = this.state
 
@@ -99,7 +88,8 @@ class HomeCategories extends Component {
   render() {
     return (
       <div className="categories" data-testid="categories">
-        {this.displayComponent()}
+        <h1 className="home-playlist-title">Genres & Moods</h1>
+        <div className="list-container">{this.displayComponent()}</div>
       </div>
     )
   }

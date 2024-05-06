@@ -4,12 +4,14 @@
   align-items: center;
 
   width: 100%;
-  height: 175px;
+  height: 150px;
+  max-height: 90vh;
 }
 @media (min-width: 768px) {
   .failure-view {
     width: 90vw;
-    height: 195px;
+    flex-grow: 1;
+    /* height: max(95px, 90vh); */
   }
 }
 
@@ -39,7 +41,7 @@
 }
 
 .failure-btn {
-  border: solid 1.3px #fff;
+  border: solid 1.3px #17f596;
   border-radius: 4px;
   background: #fff;
   color: #1a2e3b;
@@ -49,7 +51,6 @@
   font-weight: 600;
 
   padding: 4px 11px;
-  /* transition: 1s ease-in-out; */
   cursor: pointer;
   outline: none;
 }

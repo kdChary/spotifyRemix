@@ -2,17 +2,14 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import moment from 'moment'
 
+// Importing self defined components.
 import './index.css'
 import HomeItem from '../HomeItem'
 import Loading from '../LoadingPage'
 import Failure from '../ErrorPage'
 
-const apiConstant = {
-  initial: 'INITIAL',
-  inProgress: 'IN_PROGRESS',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-}
+// Importing self defined utility functions.
+import {apiConstant, modifyEditorsPicks} from '../../utils/functions'
 
 class HomeNewReleases extends Component {
   state = {newReleases: [], fetchStatus: apiConstant.initial}
@@ -21,20 +18,7 @@ class HomeNewReleases extends Component {
     this.getNewReleases()
   }
 
-  changeName = val => {
-    const indx = val.indexOf('(')
-    if (indx > 0) {
-      return val.slice(0, indx)
-    }
-    return val
-  }
-
-  modifyData = data => ({
-    id: data.id,
-    name: this.changeName(data.name),
-    imageUrl: data.images[0].url,
-  })
-
+  // Fetching response from server
   getNewReleases = async () => {
     this.setState({fetchStatus: apiConstant.inProgress})
 
@@ -51,7 +35,7 @@ class HomeNewReleases extends Component {
 
     if (response.ok) {
       const data = await response.json()
-      const newData = data.albums.items.map(items => this.modifyData(items))
+      const newData = data.albums.items.map(items => modifyEditorsPicks(items))
       this.setState({fetchStatus: apiConstant.success, newReleases: newData})
 
       //   console.log(newData)
@@ -61,12 +45,12 @@ class HomeNewReleases extends Component {
     }
   }
 
+  // JSX to display  fetched data
   renderNewReleases = () => {
     const {newReleases} = this.state
 
     return (
       <>
-        <h1 className="home-playlist-title">New Releases</h1>
         <ul className="playlist">
           {newReleases.map(genre => (
             <HomeItem key={genre.id} playListData={genre} type="album" />
@@ -76,6 +60,7 @@ class HomeNewReleases extends Component {
     )
   }
 
+  // Switch case to display different states.
   viewPlayList = () => {
     const {fetchStatus} = this.state
 
@@ -97,6 +82,7 @@ class HomeNewReleases extends Component {
   render() {
     return (
       <div className="new-releases" data-testid="newReleases">
+        <h1 className="home-playlist-title">New Releases</h1>
         {this.viewPlayList()}
       </div>
     )
