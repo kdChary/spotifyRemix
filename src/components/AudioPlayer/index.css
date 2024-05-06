@@ -17,7 +17,7 @@
 
   padding: 5px;
   margin-top: 1px;
-  cursor: pointer;
+  /* cursor: pointer; */
   outline: none;
 }
 @media (min-width: 768px) {
@@ -99,4 +99,9 @@
   .play-pause-btn {
     display: none;
   }
+}
+
+.play-pause-btn:hover,
+.play-pause-btn:active {
+  color: #17da37;
 }
