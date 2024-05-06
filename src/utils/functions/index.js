@@ -38,12 +38,29 @@ export const convertDuration = val => {
   return time
 }
 
+// Generates time stamp
+export const timeStamp = moment(new Date()).format('YYYY-MM-DDTHH:00:00')
+
 // Function to get the uploaded distance.
 export const findDistanceFromNow = date => {
   const newDate = new Date(date)
 
   return moment(newDate).fromNow()
 }
+
+// Function to modify Home Editor's Picks
+export const modifyEditorsPicks = data => ({
+  id: data.id,
+  name: changeName(data.name),
+  imageUrl: data.images[0].url,
+})
+
+// Functions to modify Home Categories response.
+export const modifyHomeCategories = data => ({
+  id: data.id,
+  name: changeName(data.name),
+  imageUrl: data.icons[0].url,
+})
 
 // Function to modify album data..
 export const modifyAlumData = data => ({
